@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-from os import environ
+from os import environ, path
 from datetime import timedelta
 import dj_database_url
 import django_heroku
@@ -175,6 +175,9 @@ SWAGGER_SETTINGS = {
         }
     }
 }
+
+MEDIA_ROOT = path.join(BASE_DIR, 'media/')
+MEDIA_URL='/media/'
 
 # Heroku
 django_heroku.settings(locals())
