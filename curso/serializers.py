@@ -25,7 +25,7 @@ class UnidadSerializer(serializers.ModelSerializer):
 class CursoListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Curso
-        fields = ['id', 'nombre']
+        fields = ['id', 'nombre', 'image']
 
 class CursoSerializer(serializers.ModelSerializer):
     unidades = UnidadSerializer(many=True)
