@@ -27,8 +27,8 @@ schema_view = get_schema_view(
     openapi.Info(
         title='Idat API eLearn',
         default_version='v1',
-        description='Aplicación que nos ayudara a manejar nuestros gastos e ingresos',
-        contact=openapi.Contact(email='D19298@idat.edu.pe')
+        description='API que gestiona compra y venta de cursos online',
+        contact=openapi.Contact(email='hdev@sztanski.com')
     ),
     public=True,
     permission_classes=(permissions.AllowAny,)
