@@ -63,7 +63,7 @@ class Curso(models.Model):
     sub_titulo = models.CharField(max_length=250, null=True, blank=True)
     resumen_corto = models.TextField(null=True, blank=True)
     resumen_largo = models.TextField(null=True, blank=True)
-    precio = models.models.DecimalField(max_digits=6, decimal_places=2)
+    precio = models.DecimalField(max_digits=6, decimal_places=2)
     duracion = models.CharField(max_length=150)
     image_thumb = models.URLField(null=True, blank=True)
     image = models.URLField(null=True, blank=True)
