@@ -25,7 +25,7 @@ class UnidadSerializer(serializers.ModelSerializer):
 class CursoListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Curso
-        fields = ['id', 'nombre', 'image']
+        fields = ['id', 'nombre', 'precio', 'image']
 
 class CursoSerializer(serializers.ModelSerializer):
     unidades = UnidadSerializer(many=True)
@@ -33,4 +33,4 @@ class CursoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Curso
-        fields = ['id', 'nombre', 'unidades', 'horarios', 'resumen_corto', 'resumen_largo', 'duracion', 'image_thumb', 'image']
+        fields = ['id', 'nombre', 'unidades', 'horarios', 'precio','resumen_corto', 'resumen_largo', 'duracion', 'image_thumb', 'image']
