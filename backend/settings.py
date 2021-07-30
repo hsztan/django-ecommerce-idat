@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     'corsheaders',
     'authentication',
-    'curso'
+    'curso',
+    'interesado'
 ]
 
 # User Model
