@@ -8,7 +8,7 @@ class Interesado(models.Model):
     nombre = models.CharField(max_length=150, null=False, blank=False)
     celular = models.CharField(max_length=30, null=False, blank=False)
     correo = models.EmailField(null=False, blank=False, validators=[validate_email], unique=True)
-    curso = models.ForeignKey(Curso, null=True, on_delete=models.SET_NULL)
+    curso = models.ForeignKey(Curso, null=False, blank=False, on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
