@@ -81,3 +81,21 @@ class Curso(models.Model):
 
     def __str__(self):
         return self.nombre
+
+class Beneficio(models.Model):
+    id = models.AutoField(primary_key=True)
+    titulo = models.CharField(max_length=150)
+    detalle = models.TextField(null=True, blank=True)
+    icono = models.URLField(null=True, blank=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'beneficio'
+        ordering = ['-updated_at']
+        verbose_name = 'Beneficio'
+        verbose_name_plural = 'Beneficios'
+
+    def __str__(self):
+        return self.titulo

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Curso, Unidad, Leccion, Horario
+from .models import Curso, Unidad, Leccion, Horario, Beneficio
 
 # Register your models here.
 @admin.register(Curso)
@@ -19,5 +19,10 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Horario)
 class UserAdmin(admin.ModelAdmin):
+    # list_display = ['__all__']
+    ordering = ['id']
+
+@admin.register(Beneficio)
+class BeneficioAdmin(admin.ModelAdmin):
     # list_display = ['__all__']
     ordering = ['id']

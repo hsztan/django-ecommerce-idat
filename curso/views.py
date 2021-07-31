@@ -1,6 +1,6 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView
-from .serializers import CursoListSerializer, CursoSerializer
-from .models import Curso
+from .serializers import CursoListSerializer, CursoSerializer, BeneficioListSerializer
+from .models import Curso, Beneficio
 from rest_framework import permissions
 
 
@@ -24,3 +24,7 @@ class CursoRetrieveAPIView(RetrieveAPIView):
 
     # def get_queryset(self):
     #     return self.queryset.filter(user=self.request.user)
+
+class BeneficioListAPIView(ListAPIView):
+    serializer_class = BeneficioListSerializer
+    queryset = Beneficio.objects.all()

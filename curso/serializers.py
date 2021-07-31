@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Leccion, Unidad, Curso, Horario
+from .models import Leccion, Unidad, Curso, Horario, Beneficio
 
 
 class HorarioSerializer(serializers.ModelSerializer):
@@ -34,3 +34,8 @@ class CursoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Curso
         fields = ['id', 'nombre', 'unidades', 'horarios', 'precio','resumen_corto', 'resumen_largo', 'duracion', 'image_thumb', 'image']
+
+class BeneficioListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Beneficio
+        fields = ['id', 'titulo', 'detalle', 'icono']
