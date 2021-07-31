@@ -6,14 +6,6 @@ from rest_framework.status import HTTP_404_NOT_FOUND
 
 
 class InteresadoSerializer(serializers.ModelSerializer):
-    
-    # def validate(self, attrs):
-    #     try:
-    #         print(attrs["curso"])
-    #     except:
-    #         raise ValidationError("hola lola")
-    #     return attrs
-        
 
     class Meta:
         model = Interesado
