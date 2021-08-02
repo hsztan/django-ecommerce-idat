@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'authentication',
     'curso',
-    'interesado'
+    'interesado',
+    'order'
 ]
 
 # User Model

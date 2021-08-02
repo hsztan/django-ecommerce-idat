@@ -1,4 +1,3 @@
-from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from rest_framework import serializers
 from .models import Interesado
 from curso.models import Curso
