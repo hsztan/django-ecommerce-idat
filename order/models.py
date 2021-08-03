@@ -8,6 +8,7 @@ from curso.models import Curso
 
 class Cupon(models.Model):
     id = AutoField(primary_key=True)
+    nombre = models.CharField(max_length=150, null=True, blank=True)
     precio = DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
     porcentaje = DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
 

@@ -6,7 +6,7 @@ from .models import Cupon, Order
 @admin.register(Cupon)
 class CuponAdmin(admin.ModelAdmin):
     # list_display = ['__all__']
-    ordering = ['id']
+    ordering = ['id', 'nombre', 'precio', 'porcentaje']
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):

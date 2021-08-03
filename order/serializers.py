@@ -4,7 +4,7 @@ from .models import Cupon, Order
 class CuponSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cupon
-        fields = ['id', 'precio', 'porcentaje']
+        fields = ['id', 'nombre', 'precio', 'porcentaje']
 
 class AddOrderSerializer(serializers.ModelSerializer):
 

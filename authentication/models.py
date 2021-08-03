@@ -18,7 +18,7 @@ class UserManager(BaseUserManager):
         user.save()
         return user
 
-    def create_superuser(self, email, password=None):
+    def create_superuser(self, email, username, password=None):
         if password is None:
             raise TypeError('La contraseña no se ha ingresado')
 
@@ -27,7 +27,9 @@ class UserManager(BaseUserManager):
         user.is_staff = True
         user.is_verified = True
         user.is_active = True
+        user.username = email
         user.save()
+        print(user)
         return user
 
 
