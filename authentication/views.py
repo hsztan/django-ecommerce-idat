@@ -5,7 +5,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.urls import reverse_lazy, reverse
 from drf_yasg.openapi import Parameter, IN_QUERY, TYPE_STRING
 from drf_yasg.utils import swagger_auto_schema
-from .serializers import RegisterSerializer, EmailVerifySerializer, LoginSerializer, LogoutSerializer, ResetPasswordSerializer, ResetPasswordValidateSerializer, PasswordChangeSerializer
+from .serializers import RegisterSerializer, EmailVerifySerializer, LoginSerializer, LogoutSerializer, ResetPasswordSerializer, ResetPasswordValidateSerializer, PasswordChangeSerializer, UserSerializer
 from .models import User
 from .helpers import send_email
 from os import environ
@@ -163,3 +163,8 @@ class PasswordChangeView(generics.GenericAPIView):
         return Response({
             'success': 'Se cambio la contraseña'
         }, status=status.HTTP_200_OK)
+
+
+class UserListView(generics.ListAPIView):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()

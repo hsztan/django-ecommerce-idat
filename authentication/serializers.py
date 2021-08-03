@@ -117,3 +117,8 @@ class PasswordChangeSerializer(serializers.Serializer):
             return True
         except (DjangoUnicodeDecodeError, Exception):
             raise AuthenticationFailed('El token es incorrecto')
+
+class UserSerializer(serializers.ModelSerializer):
+   class Meta:
+        model = User
+        fields = ['id', 'username', 'email']
