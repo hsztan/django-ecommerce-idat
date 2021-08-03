@@ -25,8 +25,8 @@ class RegisterSerializer(serializers.ModelSerializer):
     #         raise serializers.ValidationError(self.default_error_messages)
     #     return attrs
 
-    def create(self, validated_data):
-        return User.objects.create_user(**validated_data)
+    # def create(self, validated_data):
+    #     return User.objects.create_user(**validated_data)
 
 class EmailVerifySerializer(serializers.Serializer):
     token = serializers.CharField(max_length=255)

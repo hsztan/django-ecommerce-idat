@@ -32,7 +32,9 @@ class RegisterView(generics.GenericAPIView):
 
         endpoint_verify = reverse_lazy('email_verify')
 
-        url = f'http://{environ.get("DJANGO_HOST")}:{environ.get("DJANGO_PORT")}{endpoint_verify}?token={token}'
+        # url = f'http://{environ.get("DJANGO_HOST")}:{environ.get("DJANGO_PORT")}{endpoint_verify}?token={token}'
+        url = f'https://no-llores-mas.herokuapp.com{endpoint_verify}?token={token}'
+        print(url)
 
         data = {
             'subject': 'Confirmar usuario',
