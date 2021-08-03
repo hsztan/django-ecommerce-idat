@@ -5,24 +5,24 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 # Create your models here.
 class UserManager(BaseUserManager):
-    def create_user(self, username, email, password=None):
-        if username is None:
-            raise TypeError('El usuario no se ha ingresado')
+    def create_user(self, email, name, password=None):
+        # if username is None:
+        #     raise TypeError('El usuario no se ha ingresado')
 
         if email is None:
             raise TypeError('El correo no se ha ingresado')
 
-        user = self.model(username=username, email=self.normalize_email(email))
+        user = self.model(email=self.normalize_email(email), name=name)
         user.set_password(password)
         user.is_active = True
         user.save()
         return user
 
-    def create_superuser(self, username, email, password=None):
+    def create_superuser(self, email, password=None):
         if password is None:
             raise TypeError('La contraseña no se ha ingresado')
 
-        user = self.create_user(username, email, password)
+        user = self.create_user(email, password)
         user.is_superuser = True
         user.is_staff = True
         user.is_verified = True
@@ -33,8 +33,8 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=255, unique=True, db_index=True)
+    name = models.CharField(max_length=255)
     email = models.EmailField(max_length=255, unique=True, db_index=True)
-    name = models.CharField(max_length=300)
     is_verified = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)

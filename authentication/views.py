@@ -5,7 +5,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.urls import reverse_lazy, reverse
 from drf_yasg.openapi import Parameter, IN_QUERY, TYPE_STRING
 from drf_yasg.utils import swagger_auto_schema
-from .serializers import RegisterSerializer, EmailVerifySerializer, LoginSerializer, LogoutSerializer, ResetPasswordSerializer, ResetPasswordValidateSerializer, PasswordChangeSerializer, UserSerializer
+from .serializers import RegisterSerializer, EmailVerifySerializer, LoginSerializer, LogoutSerializer, ResetPasswordSerializer, ResetPasswordValidateSerializer, PasswordChangeSerializer, UserListSerializer
 from .models import User
 from .helpers import send_email
 from os import environ
@@ -32,18 +32,15 @@ class RegisterView(generics.GenericAPIView):
 
         endpoint_verify = reverse_lazy('email_verify')
 
-        # url = f'http://{environ.get("DJANGO_HOST")}:{environ.get("DJANGO_PORT")}{endpoint_verify}?token={token}'
         url = f'https://no-llores-mas.herokuapp.com{endpoint_verify}?token={token}'
-        print(url)
 
         data = {
             'subject': 'Confirmar usuario',
-            'body': f'Hola {user_object.username}, usa este link para activar tu cuenta {url}',
+            'body': f'Hola {user_object.name}, usa este link para activar tu cuenta {url}',
             'to': f'{user_object.email}'
         }
 
         send_email(data)
-        #### por el momento obviamos enviar el correo y activamos usuario
 
         return Response(user_data, status=status.HTTP_201_CREATED)
 
@@ -120,11 +117,13 @@ class ResetPasswordView(generics.GenericAPIView):
 
             endpoint_validate = reverse('reset_password_check', kwargs={'uidb64': uidb64, 'token': token})
 
-            url = f'http://{environ.get("DJANGO_HOST")}:{environ.get("DJANGO_PORT")}{endpoint_validate}'
+            # url = f'http://{environ.get("DJANGO_HOST")}:{environ.get("DJANGO_PORT")}{endpoint_validate}'
+
+            url = f'https://no-llores-mas.herokuapp.com/{endpoint_validate}'
             
             data = {
                 'subject': 'Resetear Contraseña',
-                'body': f'Hola {user.username}, usa este link para resetear tu contraseña {url}',
+                'body': f'Hola {user.name}, usa este link para resetear tu contraseña {url}',
                 'to': user.email
             }
 
@@ -168,5 +167,5 @@ class PasswordChangeView(generics.GenericAPIView):
 
 
 class UserListView(generics.ListAPIView):
-    serializer_class = UserSerializer
+    serializer_class = UserListSerializer
     queryset = User.objects.all()

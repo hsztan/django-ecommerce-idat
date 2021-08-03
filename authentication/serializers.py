@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.exceptions import AuthenticationFailed, MethodNotAllowed
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 from django.contrib.auth import authenticate
 from django.utils.http import urlsafe_base64_decode
@@ -17,7 +17,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['email', 'username', 'password', 'name']
+        fields = ['email', 'password', 'name']
 
     # def validate(self, attrs):
     #     username = attrs.get('username', '')
@@ -25,8 +25,8 @@ class RegisterSerializer(serializers.ModelSerializer):
     #         raise serializers.ValidationError(self.default_error_messages)
     #     return attrs
 
-    # def create(self, validated_data):
-    #     return User.objects.create_user(**validated_data)
+    def create(self, validated_data):
+        return User.objects.create_user(**validated_data)
 
 class EmailVerifySerializer(serializers.Serializer):
     token = serializers.CharField(max_length=255)
@@ -61,7 +61,7 @@ class LoginSerializer(serializers.Serializer):
 
         return {
             'email': user.email,
-            'username': user.username,
+            # 'username': user.username,
             'tokens': user.tokens
         }
 
@@ -118,7 +118,7 @@ class PasswordChangeSerializer(serializers.Serializer):
         except (DjangoUnicodeDecodeError, Exception):
             raise AuthenticationFailed('El token es incorrecto')
 
-class UserSerializer(serializers.ModelSerializer):
-   class Meta:
+class UserListSerializer(serializers.ModelSerializer):
+    class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'name']
+        fields = ['id', 'email', 'name', 'is_active', 'is_verified']
