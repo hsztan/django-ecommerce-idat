@@ -10,4 +10,4 @@ class CuponAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    ordering = ['id']
+    ordering = ['id', 'code', 'user', 'cupon', 'cursos', 'total']

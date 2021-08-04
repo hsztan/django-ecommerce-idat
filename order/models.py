@@ -26,6 +26,9 @@ class Order(models.Model):
     code = CharField(max_length=30)
     user = ForeignKey(User, null=False, blank=False, on_delete=models.CASCADE)
     cursos = ManyToManyField(Curso)
+    cupon = models.ForeignKey(Cupon, null=True, blank=True, on_delete=models.CASCADE)
+    total = DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
+
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
