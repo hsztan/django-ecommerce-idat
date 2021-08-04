@@ -25,7 +25,7 @@ class OrderCreateListView(ListCreateAPIView):
             curso = Curso.objects.get(id=curso_id)
             total_price += curso.precio
         if request.data.get('cupon', ''):
-            cupon = Cupon.objects.get(request.data['cupon'])
+            cupon = Cupon.objects.get(id=request.data['cupon'])
             if cupon.precio:
                 total_price -= cupon.precio
             if cupon.porcentaje:
