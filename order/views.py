@@ -7,6 +7,7 @@ from curso.models import Curso
 from authentication.models import User
 from interesado.models import Interesado
 import uuid
+from decimal import *
 
 # Create your views here.
 
@@ -30,16 +31,13 @@ class OrderCreateListView(ListCreateAPIView):
                 total_price -= cupon.precio
             if cupon.porcentaje:
                 total_price *= (1 - cupon.porcentaje *0.1)
-        request.data["total"] = total_price
 
         user = User.objects.get(id=request.data["user"])
-        # if Interesado.objects.get(correo=user.email):
-        #     total_price *= .9 #TODO
-        # from pdb import set_trace
-        # set_trace()
-        print(total_price)
-
-
+      
+        if Interesado.objects.filter(correo=user.email):
+            total_price *= Decimal(.9)
+        total_price = Decimal(total_price).quantize(Decimal('.01'), rounding=ROUND_DOWN)
+        request.data["total"] = total_price
         code = str(uuid.uuid4().hex)[:11]
         request.data["code"] = code
         return self.create(request, *args, **kwargs)
